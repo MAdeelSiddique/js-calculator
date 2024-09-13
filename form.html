@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks Calculation Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Marks Calculation Form</h2>
+    <form id="marksForm">
+        <div class="form-group">
+            <label for="totalMarksMath">Total Marks of Math:</label>
+            <input type="number" id="totalMarksMath" required>
+        </div>
+        <div class="form-group">
+            <label for="obtainedMarksMath">Obtained Marks of Math:</label>
+            <input type="number" id="obtainedMarksMath" required>
+        </div>
+        <div class="form-group">
+            <label for="totalMarksPhysics">Total Marks of Physics:</label>
+            <input type="number" id="totalMarksPhysics" required>
+        </div>
+        <div class="form-group">
+            <label for="obtainedMarksPhysics">Obtained Marks of Physics:</label>
+            <input type="number" id="obtainedMarksPhysics" required>
+        </div>
+        <div class="form-group">
+            <label for="totalMarksChemistry">Total Marks of Chemistry:</label>
+            <input type="number" id="totalMarksChemistry" required>
+        </div>
+        <div class="form-group">
+            <label for="obtainedMarksChemistry">Obtained Marks of Chemistry:</label>
+            <input type="number" id="obtainedMarksChemistry" required>
+        </div>
+        <button type="button" onclick="calculateResults()">Submit</button>
+    </form>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function calculateResults() {
+        
+        const totalMarksMath = parseFloat(document.getElementById('totalMarksMath').value);
+        const obtainedMarksMath = parseFloat(document.getElementById('obtainedMarksMath').value);
+        const totalMarksPhysics = parseFloat(document.getElementById('totalMarksPhysics').value);
+        const obtainedMarksPhysics = parseFloat(document.getElementById('obtainedMarksPhysics').value);
+        const totalMarksChemistry = parseFloat(document.getElementById('totalMarksChemistry').value);
+        const obtainedMarksChemistry = parseFloat(document.getElementById('obtainedMarksChemistry').value);
+
+       
+        const totalMarks = totalMarksMath + totalMarksPhysics + totalMarksChemistry;
+        const obtainedMarks = obtainedMarksMath + obtainedMarksPhysics + obtainedMarksChemistry;
+
+        // Calculate percentage
+        const percentage = (obtainedMarks / totalMarks) * 100;
+
+        // Determine grade
+        let grade;
+        if (percentage < 33) {
+            grade = 'Fail';
+        } else if (percentage < 40) {
+            grade = 'E Grade';
+        } else if (percentage < 50) {
+            grade = 'D Grade';
+        } else if (percentage < 60) {
+            grade = 'C Grade';
+        } else if (percentage < 70) {
+            grade = 'B Grade';
+        } else if (percentage < 80) {
+            grade = 'A Grade';
+        } else {
+            grade = 'A+ Grade';
+        }
+
+        // Display results
+        document.getElementById('result').innerText = `Percentage: ${percentage.toFixed(2)}% \nGrade: ${grade}`;
+    }
+</script>
+
+</body>
+</html>
